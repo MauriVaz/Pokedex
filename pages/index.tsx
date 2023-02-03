@@ -7,6 +7,7 @@ import pokeball from '../public/pokeball.png';
 const Home: NextPage = ({ initialPokemon }: any) => {
   const [pokemon, setPokemon] = useState(initialPokemon);
   const [cont, setCont] = useState(0);
+  const [name, setName] = useState("");
   const fetchPokemon = async (url: string, next: boolean) => {
     const res = await fetch(url);
     const nextPokemon = await res.json();
@@ -37,12 +38,11 @@ const Home: NextPage = ({ initialPokemon }: any) => {
         </div>
         <section className="mt-10 flex justify-center gap-5">
           <button
-            className={`${
-              !pokemon.previous && 'cursor-not-allowed	'
-            } disabled:bg-gray-200 disabled:text-black text-white p-2 rounded-2xl bg-gray-500`}
+            className={`${!pokemon.previous && 'cursor-not-allowed	'
+              } disabled:bg-gray-200 disabled:text-black text-white p-2 rounded-2xl bg-gray-500`}
             disabled={!pokemon.previous}
             onClick={() => fetchPokemon(pokemon.previous, false)}>
-            previous 20 pokemon
+            Previous 20 pokemon
           </button>
           <button
             className={
@@ -50,7 +50,7 @@ const Home: NextPage = ({ initialPokemon }: any) => {
             }
             disabled={!pokemon.next}
             onClick={() => fetchPokemon(pokemon.next, true)}>
-            next 20 pokemon
+            Next 20 pokemon
           </button>
         </section>
       </div>

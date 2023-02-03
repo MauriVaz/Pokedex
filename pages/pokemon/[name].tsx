@@ -12,7 +12,7 @@ const Pokemon = ({ pokemon }: any) => {
       <Head>
         <title>{pokeName}</title>
       </Head>
-      <div className={'flex flex-col justify-center items-center'}>
+      <div className={'flex flex-col justify-center items-center font-bold'}>
         <Link className="mt-6 " href={'/'}>
           <p className="mt-4 p-4 hover:bg-white cursor-pointer bg-slate-200 rounded-2xl border-4 border-slate-500">
             Go to home page
@@ -54,7 +54,7 @@ const Pokemon = ({ pokemon }: any) => {
         ${namePoke === 'electric' && 'bg-yellow-100'}
         ${namePoke === 'fairy' && 'bg-pink-200'}
         ${namePoke === 'fighting' && 'bg-red-600'}
-        ${namePoke === 'flying' && 'bg-gray-100'}
+        ${namePoke === 'flying' && 'bg-gray-300'}
         ${namePoke === 'fire' && 'bg-red-500'}
         ${namePoke === 'ghost' && 'bg-purple-600'}
         ${namePoke === 'grass' && 'bg-green-400'}
@@ -74,20 +74,14 @@ const Pokemon = ({ pokemon }: any) => {
             })}
             <Image src={pokeImage} alt={pokeName} width={200} height={200} />
             <p className="rounded-2xl bg-indigo-500 font-bold">
-              Peso: {weight / 10} kg
+              Weight: {weight / 10} kg
             </p>
             <p className="mt-5 rounded-2xl bg-indigo-500 font-bold">
-              Altura: {height / 10} m
+              Height: {height / 10} m
             </p>
           </div>
-          <div>
-            Elementos
-            {abilities.map((elem: any, index: number) => {
-              <p>Elem {elem} </p>;
-            })}
-          </div>
           <div className="mx-5">
-            <p>Estadísticas</p>
+            <p>Stats</p>
             {stats.map((elem: any, index: number) => {
               let x = elem.base_stat;
               let maxStat = 255;
@@ -105,7 +99,18 @@ const Pokemon = ({ pokemon }: any) => {
                 </>
               );
             })}
-          </div>
+            <div>
+              <h2 className='bg-cyan-500 rounded-2xl'>Abilities</h2>
+              {abilities.map((elem: any, index: number) => {
+                let ability = elem.ability.name
+                return (
+                  <div key={index}>
+                    <p className="my-2 bg-green-500 rounded-2xl p-2">
+                      {ability.charAt(0).toUpperCase() + ability.toLowerCase().substring(1, ability.length)}
+                    </p>
+                  </div>)
+              })}
+            </div></div>
         </div>
       </div>
     </div>
